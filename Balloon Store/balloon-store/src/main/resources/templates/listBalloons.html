@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Balloon Order page - Welcome and choose a Balloon</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Welcome to our Balloon Shop App</h1>
+    </header>
+    <main>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Balloon name </th>
+                <th>Description</th>
+                <th>Manufacturer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="balloon:${balloonList}">
+                <td th:text="${balloon.getName()}"></td>
+                <td th:text="${balloon.getDescription()}"></td>
+                <td th:text="${balloon.getManufacturer().getName()}"></td>
+                <td>
+                    <form th:method='DELETE' th:action="@{ '/balloons/delete/{id}' (id = ${balloon.getId()})  }">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <a class="btn btn-primary" th:href="@{'/balloons/edit-form/{id}' (id=${balloon.getId()})}">Edit</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-success" href="/balloons/add-form">Add New Product</a>
+
+
+
+
+        <!--    <form th:method="POST" th:action="@{/}">-->
+        <!--        <h2>Choose balloon color:</h2>-->
+        <!--        <input type="radio" name="color" value="Red Balloon"> Red Balloon<br/>-->
+        <!--        <input type="radio" name="color" value="Green Balloon"> Green Balloon<br/>-->
+        <!--        <input type="radio" name="color" value="Yellow Balloon"> Yellow Balloon<br/>-->
+        <!--        <input type="radio" name="color" value="Blue Balloon"> Blue Balloon<br/>-->
+        <!--        <br/>-->
+
+        <!--        <input type="submit" value="Submit">-->
+        <!--    </form>-->
+
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

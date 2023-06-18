@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Naracki</title>
+</head>
+<body>
+<h1>Orders</h1>
+<ul>
+    <li th:each="order : ${orders}" th:text="${order.balloonColor} + ' ' + ${order.balloonSize}"></li>
+</ul>
+
+<a href="/balloons">Home</a>
+<form th:method="post" th:action="@{/orders}">
+    <button type="submit">Logout</button>
+</form>
+
+</body>
+</html>
